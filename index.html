@@ -4,45 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>character counter </title>
+    <title>Character Counter</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="flex items-center justify-center h-screen bg-purple-400">
 
-
-    <div class="container">
-        <div>
-            <h2>MESSAGE</h2>
-        </div>
-
-        <textarea id="message" maxlength="200" placeholder="Type your message"></textarea>
-        <div id="charCounter" aria-valuetext="">0/200 character</div>
-        <div id="warning" class="hidden">You have exceeded the character limit!</div>
-
+    <div class=" bg-yellow-200 p-6 rounded-lg shadow-lg w-96">
+        <h2 class="text-lg font-semibold mb-2">MESSAGE</h2>
+        <textarea id="message" maxlength="200" placeholder="Type your message"
+            class="w-full border p-2 rounded"></textarea>
+        <div id="charCounter" class="text-sm text-gray-600 mt-2">0/200 characters</div>
+        <div id="warning" class="hidden text-red-500 text-sm mt-2">You have reached the maximum character limit.</div>
     </div>
-
-
     <script>
-
-        var message = document.getElementById("message")
-        var charCount = document.getElementById("charCounter")
-        var warningMessage = document.getElementById("warning")
+        var message = document.getElementById("message");
+        var charCount = document.getElementById("charCounter");
+        var warning = document.getElementById("warning"); 
 
         message.addEventListener("input", function () {
-            var typedCharacters = message.value.length
+            var typedCharacters = message.value.length;
             var maxLength = 200;
 
-            charCount.innerText = typedCharacters + "/" + maxLength + " characters"
+            charCount.innerText = typedCharacters + "/" + maxLength + " characters";
 
             if (typedCharacters >= maxLength) {
-                warningMessage.innerText = "You have reached the maximum character limit."
+                warning.classList.remove("hidden");
+            } else {
+                warning.classList.add("hidden");
             }
-        })
-
-
-
+        });
     </script>
+
 </body>
 
 </html>
